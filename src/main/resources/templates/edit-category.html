@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{manage}">
+<head>
+<title>Chỉnh Sửa Phân Loại</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<div class="container">
+			<div class="row">
+			
+			<div class="col-md-3">
+			</div>
+			
+				<div class="col-md-6">
+				<h2 style="text-align: center; font-size: 40px; font-weight:bold; margin-top: 40px;"class="mb-3">Chỉnh Sửa Phân Loại</h2>
+					<form th:action="@{/admin/updatecategory?(categoryId=${category.id})}" th:object="${category}" method="post">
+						<div class="mb-3">
+							<label for="name" class="col-form-label">Tên Phân Loại</label>
+							<input type="text" th:field="*{name}" class="form-control"
+								id="name" placeholder="Tên Phân Loại" /> 
+							<span th:errors="*{name}" class="text-danger"></span>
+						</div>
+
+						<div class="mb-3">
+							<label for="title" class="col-form-label">Tên Sản Phẩm</label> <input
+								type="text" th:field="*{title}" class="form-control"
+								id="title" placeholder="Tên Sản Phẩm"> 
+							<span th:errors="*{title}" class="text-danger"></span>
+						</div>
+						
+						<div class="mb-3">
+							<label for="description" class="col-form-label">Mô Tả Sản Phẩm</label> <input
+								type="text" th:field="*{description}" class="form-control" id="email"
+								placeholder="Mô Tả Sản Phẩm"> 
+							<span th:errors="*{description}"	class="text-danger"></span>
+						</div>
+						
+						<input style="width: 26%; border-radius: 15px; margin-left: 220px; background-color: green; color: white; font-weight: bold; font-size: 25px" 
+						type="submit" value="Lưu Lại" class="mt-3" />
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

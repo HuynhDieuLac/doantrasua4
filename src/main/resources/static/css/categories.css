@@ -1,0 +1,45 @@
+body
+{
+	background: #e2f1f6;
+}
+
+header
+{
+	background: pink;
+}
+
+.button-action
+{
+	boder-radius: 15px;
+	background-color: green;
+	background: green;
+	color: white;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.ul.pagination li
+{
+	display: inline;
+		
+}
+
+.ul.pagination a
+{
+	display: inline-block;
+	
+}
+
+.ul.pagination
+{
+	border-radius: 10px;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+}
+
+.nav-page
+{
+	margin-bottom: 20px;
+}

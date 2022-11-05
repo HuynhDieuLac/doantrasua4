@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{manage}">
+<head>
+<title>Thêm Sản Phẩm</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<div class="container pt-5">
+			<div class="row">
+			
+			<div class="col-md-3">
+			
+			</div>
+			
+				<div class="col-md-6">
+				<h2 style="text-align: center; font-weight: bold; font-size: 40px;" class="mb-3">Thêm Sản Phẩm</h2>
+					<form enctype="multipart/form-data" th:action="@{/admin/addfood}" th:object="${food}" method="post">
+						<div class="mb-3">
+							<label style="font-weight: bold; font-size: 20px; " for="category" class="col-form-label">Thể Loại Sản Phẩm</label>
+	                            <select style="font-weight: bold; font-size: 20px;" th:field="*{category}" id="category" class="form-select" >
+	                                <option th:each = "category : ${categories}" th:value="${{category}}" th:text="${category.name}"></option>
+	                            </select>
+						</div>
+						
+						<div class="mb-3" style="font-weight: bold; font-size: 20px;">
+							Hình Ảnh Chính Sản Phẩm: <input th:field="*{thumbnailImageFile}" type="file"/>
+	                    </div>
+						
+						<div class="mb-3" style="font-size: 20px; font-weight: bold;">
+							<ul >
+								<li>Hình 1: <input th:field="*{foodImageFiles}" type="file"/></li>
+								<li>Hình 2: <input th:field="*{foodImageFiles}" type="file"/></li>
+								<li>Hình 3: <input th:field="*{foodImageFiles}" type="file"/></li>
+								<li>Hình 4: <input th:field="*{foodImageFiles}" type="file"/></li>
+								<li>Hình 5: <input th:field="*{foodImageFiles}" type="file"/></li>								
+							</ul>				
+	                    </div>
+						
+						<div class="mb-3">
+							<label for="foodCode" class="col-form-label">Mã Sản Phẩm</label>
+							<input type="text" th:field="*{code}" class="form-control"
+								id="foodCode" placeholder="Mã Sản Phẩm" /> 
+							<span th:errors="*{code}" class="text-danger"></span>
+						</div>
+						
+						<div class="mb-3">
+							<label for="foodCode" class="col-form-label">Tên Sản Phẩm</label>
+							<input type="text" th:field="*{foodName}" class="form-control"
+								id="foodCode" placeholder="Tên Sản Phẩm" /> 
+							<span th:errors="*{foodName}" class="text-danger"></span>
+						</div>
+
+						<div class="mb-3">
+							<label for="foodDescription" class="col-form-label">Mô Tả Sản Phẩm</label> <input
+								type="text" th:field="*{description}" class="form-control"
+								id="foodDescription" placeholder="Mô Tả Sản Phẩm (Vd: bánh tráng trộn)"> 
+							<span th:errors="*{description}" class="text-danger"></span>
+						</div>
+						
+						<div class="mb-3">
+							<label for="foodQuantity" class="col-form-label">Số Lượng</label> <input
+								type="text" th:field="*{quantity}" class="form-control" id="foodQuantity"
+								placeholder="Số Lượng"> 
+							<span th:errors="*{quantity}" class="text-danger"></span>
+						</div>
+						
+						<div class="mb-3">
+							<label for="price" class="col-form-label">Giá Tiền</label>
+							<input type="text" th:field="*{price}" class="form-control"
+								id="price" placeholder="Giá Tiền" /> 
+							<span th:errors="*{price}" class="text-danger"></span>
+						</div>
+						
+						<div class="mb-3">
+							<label for="foodPriceSpecial" class="col-form-label">Giá Khuyến Mãi</label>
+							<input type="text" th:field="*{priceSpecial}" class="form-control"
+								id="foodPriceSpecial" placeholder="Giá Khuyến Mãi (nếu có)" /> 
+							<span th:errors="*{priceSpecial}" class="text-danger"></span>
+						</div>
+						
+						<div class="mb-3">
+							<label for="foodPriceSpecialStart" class="col-form-label">Ngày Sản Xuất</label>
+							<input type="date" th:field="*{priceSpecialStart}" class="form-control"
+								id="foodPriceSpecialStart" placeholder="Ngày Sản Xuất" /> 
+							<span th:errors="*{priceSpecialStart}" class="text-danger"></span>
+						</div>
+						
+						<div class="mb-3">
+							<label for="foodPriceSpecialEnd" class="col-form-label">Ngày Hết Hạn</label>
+							<input type="date" th:field="*{priceSpecialEnd}" class="form-control"
+								id="foodPriceSpecialEnd" placeholder="Ngày Hết Hạn" /> 
+							<span th:errors="*{priceSpecialEnd}" class="text-danger"></span>
+						</div>
+
+						
+						<input 
+						style="width: 50%; margin-left: 26%; background-color: green; color: white; font-weight: bold; font-size: 25px; border-radius: 10px;"
+						type="submit" value="Thêm Sản Phẩm" class="mt-3" />
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

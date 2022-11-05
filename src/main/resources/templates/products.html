@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout}">
+<head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+<title>Giới thiệu - MixiFood</title>
+</head>
+<body>
+	<div class="pt-5" layout:fragment="content">
+		<section class="pt-5">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-7">
+							<h3>Tên danh mục</h3>
+					</div>
+					<div class="col-md-1 fs-5 pt-1">
+						<span>Sắp xếp: </span>
+					</div>
+					<div class="col-md-4 fs-6">
+						<div class="">
+	                            <select class="form-select" aria-label="Default select example" >
+								  <option th:href="@{/admin/foods?(page=${currentPage},sortField='description',sortDir=${reverseSortDir})}">Thứ tự theo tên: A -> Z</option>
+								  <option th:href="@{/admin/foods?(page=${currentPage},sortField='description',sortDir=${reverseSortDir})}">Thứ tự theo tên: Z -> A</option>
+								  <option th:href="@{/admin/foods?(page=${currentPage},sortField='price',sortDir=${reverseSortDir})}">Thứ tự theo giá: Thấp -> Cao</option>
+								  <option th:href="@{/admin/foods?(page=${currentPage},sortField='price',sortDir=${reverseSortDir})}">Thứ tự theo giá: Cao -> Thấp</option>
+								</select>
+						</div>
+					</div>
+				</div>
+			</div>
+				
+			<div class="container">
+				<div class="row">
+					<div class="col-md-3" style="height: 100px">
+						<h3>DANH MỤC SẢN PHẨM</h3>
+							<div th:each="category : ${categories}" class="fs-5">
+								<a th:href="@{/}" th:text="${category.name}" style="text-decoration: none; color: #28bcbe"></a>
+							</div>
+					</div>
+					
+					<div class="col-md-9">
+						<div class="row">
+							<div th:each="food : ${foods}" class="col-md-3 text-center">
+				    			<div class="image-box">
+				    				<img th:attr="src=@{/upload/{path}(path=${food.thumbnailImageName})}" width="200px" height="300px">
+				    					<div class="list-group-item" th:text="${food.category.name}"></div>
+										<div class="list-group-item text-uppercase"><a type="button" th:href="@{/}" th:text="${food.description}" style="text-decoration: none; color: 007784;">TÊN SẢN PHẨM</a></div>
+										<div class="list-group-item" th:text="${food.price}+' đ'"></div>
+		    			  		</div>	    		
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+</body>
+</html>

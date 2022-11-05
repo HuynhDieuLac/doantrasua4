@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="/css/login.css" type="text/css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+<title>Đăng nhập</title>
+</head>
+<body class = "background">
+	<div class="container mt-5 text-center login-container">
+		<h1 class = "text-primary">Đăng nhập</h1>
+		<div class = "container">
+			<div class = "row">
+				<div class = "col-md-4"></div>
+				<div class = "col-md-4">
+					<form class="loginServlet " method="post" action="login">								
+					<input type="text" name="username" class="form-control input_username mb-3 mt-5" id="username" placeholder="Tên đăng nhập"/>					
+					<input type="password" name="password" class=" form-control input_password mb-3" id="password" placeholder="Password"/>
+					<input class="large-button float-right first-button" type="submit" name="subsmit" value="Đăng nhập"/>	
+					
+					<div th:if="${error != null}" class="alert alert-danger" role = "alert">Sai tên Đăng Nhập hoặc mật khẩu</div>		
+					</form>
+				</div>
+				<div class = "col-md-4"></div>
+			</div>
+		</div>
+	</div>
+</body>

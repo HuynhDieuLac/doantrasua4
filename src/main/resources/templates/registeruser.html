@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout}">
+<head>
+<title>Đăng Ký</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<section>
+    	<div class="container">
+    		<div class="row">
+    			<div class="col-xs-12">
+    			<div class="section-1">
+    				<nav class="navbar">
+    				
+  <div class="container-fluid">
+    <a class="navbar-brand " href="#">
+    	<span>Trang Chủ</span>
+		<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+</svg>
+		<span style="color: pink;">Đăng Ký Tài Khoản</span>
+    </a>
+  </div>
+</nav>
+    			</div>
+    		</div>
+    	</div>
+    	</div>
+    </section>
+    
+    <div class="container">
+    	<h1 class="title-head">
+    		<a href="#" style="text-decoration: none; color: #363636">Đăng Ký Tài Khoản</a>
+    	</h1>
+    	
+    	<form action="#" th:action="@{/registeruser}" method="post" th:object="${user}">
+    	<div class="row">
+    		<div class="col-md-6">
+    			<fieldset class="form-group">
+    				<label>Họ: </label>
+    				<input type="text" th:field="*{lastName}" class="form-control form-control-lg" value name="lastName"  placeholder required>
+    			</fieldset>
+    		</div>
+    		
+    		<div class="col-md-6">
+    			<fieldset class="form-group">
+    				<label>Tên: </label>
+    				<input type="text" th:field="*{fullName}" class="form-control form-control-lg" value name="firstName" placeholder required>
+    			</fieldset>
+    		</div>
+    	</div>
+    	
+    	<div class="row">
+    		<div class="col-md-6">
+    			<fieldset class="form-group">
+    				<label>Số Điện Thoại: </label>
+    				<input type="tel" th:field="*{telephone}"  class="form-control form-control-lg" value name="tel" placeholder required>
+    			</fieldset>
+    		</div>
+    		
+    		<div class="col-md-6">
+    			<fieldset class="form-group">
+    				<label>Mật Khẩu: </label>
+    				<input type="password" th:field="*{password}"  class="form-control form-control-lg" value name="password" placeholder required>
+    			</fieldset>
+    		</div>
+    	</div>
+    	
+    	<div class="col-xs-12 text-xs-left margin-bottom-30" style="margin-top: 6px; padding: 0;">
+    		<button type="submit" value="Đăng Ký" class="btn" id="btndangky" style="background-color: pink;">Đăng Ký</button>
+    	</div>    	
+    </div>
+    </form>
+	</div>
+</body>
+</html>

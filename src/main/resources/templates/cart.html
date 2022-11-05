@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout}">
+<head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+<title>Giỏ Hàng</title>
+</head>
+<body>
+	<div class="pt-5" layout:fragment="content">
+		 <section>
+    	<div class="container">
+    		<div class="row">
+    			<div class="col-xs-12">
+    			<div class="section-1">
+    				<nav class="navbar bg-light">
+    				
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">
+    	Trang Chủ
+		<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+</svg>
+		Giỏ Hàng
+    </a>
+  </div>
+</nav>
+   </section> 
+   
+   <section class="main-cart-page main-container coll-layout">
+   		<div class="main container hidden-xs">
+   			<div class="col-main cart_desktop_page cart-page">
+   				<div class="cart page_cart hidden-xs">
+   					<form action="/cart" method="post" novalidate class="margin-bottom-0">
+   						<div class="bg-scroll">
+   							<div class="cart-thead">
+   								<div style="width: 19%;">Sản Phẩm</div>
+   								<div style="width: 28%;padding-left: 5px;">
+   									<span class="nobr">Thông tin sản phẩm</span>
+   								</div>
+   								<div style="width: 17%" class="a-center">
+   									<span class="nobr">Đơn Giá</span>
+   								</div>
+   								<div style="width: 18%" class="a-center">Số Lượng</div>
+   								<div style="width: 13%" class="a-center">Thành Tiền</div>
+   								<div style="width: 5%" class="a-center">Xóa</div>
+   							</div>
+   							
+   							<div class="cart-tbody">
+   								<div class="item-cart">
+   									<div style="width: 19%" class="image">
+   										<a class="product-image" title="Bánh Tráng Cuộn" href="#">
+   											<img width="120" height="auto" alt="Bánh Tráng Cuộn"  src="/images/anh16.jpg">
+   										</a>
+   									</div>
+   									
+   									<div style="width: 28%; align-items: flex-start;" class="a-center">
+   										<h2 class="product-name">Bánh Tráng Cuộn</h2>
+   										<div style="height: 30px; position: relative; width: 78px; padding: 10px 0; border: none;"></div>
+   									</div>
+   									
+   									<div style="width: 17%" class="a-center">
+   										<span class="item-price">25.000 Vnd</span>
+   									</div>
+   									
+   									<div style="width: 18%" class="a-center">
+   										
+   									</div>
+   									
+   									<div style="width: 13%" class="a-center">
+   										<span class="cart-price">
+   											<span class="price">25.000 Vnd</span>						
+   										</span>
+   									</div>
+   									
+   									<div style="width: 5%" class="a-center">
+   										<a class="btn-remove" title="Xóa" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+  <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
+</svg>
+										
+										</a>
+										
+   									</div>
+   								</div>
+   							</div>
+   						</div>
+   					</form>
+   					
+   					<div class="row">
+   						<div class="col-sm-12 col-md-12 col-xs-12">
+   							<div class="totals">
+   								<div class="inner">
+   									<ul class="checkout" style="list-style: none;">
+   										<li class="clearfix">
+   											<div class="inline-block">
+   												<span>Tổng Tiền:</span>
+   												<strong>
+   													<span class="totals_price price">25.000 Vnd</span>
+   												</strong>
+   											</div>
+   											
+   											<button class="btn btn-primary button btn-proceed-checkout f-right"
+   											title="Tiến Hành Thanh Toán" type="button" onclick="window.location.href="#"">Tiến Hành Thanh Toán</button>
+   											
+   											<button class="btn btn-secondary margin-right-15 f-right btn-proceed-next"
+   											title="Tiếp Tục Mua Hàng" type="button" onclick="window.location.href="/"">Tiếp Tục Mua Hàng</button>
+   										</li>
+   									</ul>
+   								</div>
+   							</div>
+   						</div>
+   					</div>
+   				</div>
+   			</div>
+   		</div>
+   </section>
+	</div>
+</body>
+</html>

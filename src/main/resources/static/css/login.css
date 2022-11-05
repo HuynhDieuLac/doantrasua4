@@ -1,0 +1,8 @@
+.background {
+	background-image: url("/images/login1.jpg");
+	background-size: cover;
+}
+
+.login-container{	
+	padding-top: 175px;
+}

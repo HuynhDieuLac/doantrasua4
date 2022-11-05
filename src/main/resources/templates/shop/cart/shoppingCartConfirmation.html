@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<title>Thanh Toán</title>
+<meta charset="UTF-8">
+
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-
+fit=no">
+
+<title layout:title-pattern="$CONTENT_TITLE - $LAYOUT_TITLE">anvatsubon</title>
+<!-- Bootstrap CSS -->
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+	crossorigin="anonymous">
+<link href="path/to/effects.min.css" rel="stylesheet">
+<link rel="stylesheet" href="/css/checkout.css" type="text/css">
+<link rel="stylesheet"
+	href="path/to/font-awesome/css/font-awesome.min.css">
+
+</head>
+<body>
+	<div layout:fragment="content">
+		<div class="card-body">
+			<h3 class="card-title">Thông tin khách hàng</h3>
+			<div class="form-group">
+				<div class="row">
+					<div class="col-xs-1">
+						<label> Họ tên: </label>
+					</div>
+					<div class="col">
+						<span th:text="${myCart.customerInfo.lastName}"></span> <span
+							th:text="${myCart.customerInfo.firstName}"></span>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="row">
+					<div class="col-xs-1">
+						<label> Email: </label>
+					</div>
+					<div class="col" th:text="${myCart.customerInfo.email}"></div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="row">
+					<div class="col-xs-1">
+						<label> Điện thoại: </label>
+					</div>
+					<div class="col" th:text="${myCart.customerInfo.numberPhone}"></div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="row">
+					<div class="col-xs-1">
+						<label> Địa chỉ: </label>
+					</div>
+					<div class="col">
+						<span th:text="${myCart.customerInfo.street}"></span>, <span
+							th:text="${myCart.customerInfo.district}"></span> , <span
+							th:text="${myCart.customerInfo.city}"></span>
+					</div>
+				</div>
+			</div>
+			<h3 class="card-title">Giỏ hàng</h3>
+			<div class="form-group">
+				<div class="row">
+					<div class="col-xs-1">
+						<label> Số lượng: </label>
+					</div>
+					<div class="col" th:text="${myCart.quantityTotal}"></div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="row">
+					<div class="col-xs-1">
+						<label> Tổng: </label>
+					</div>
+					<div class="col">
+						<span class="total" th:text="${myCart.amountTotal}"> </span>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<form method="POST" th:action="@{/shop/shoppingCartConfirmation}">
+			<!-- Edit Cart -->
+
+			<!-- Edit Customer Info -->
+			<a class="btn btn-primary" th:href="@{/shop/shoppingCartCustomer}">Sửa
+				thông tin giao hàng</a>
+			<!-- Send/Save -->
+			<div class="row pdtop">
+				<div class="col-lg-8 col-md-8 col-sm-7 col-xs-12"></div>
+				<div class="col-lg-4 col-md-4 col-sm-5 col-xs-12">
+					<div class="wc-proceed-to-checkout pdbottom">
+						<input type="submit" value="Xác nhận" class="btn btn-primary" />
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</body>
+
+
+</html>

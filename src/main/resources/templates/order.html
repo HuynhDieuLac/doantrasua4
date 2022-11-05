@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{manage}">
+<head>
+<title>Quản Lý Đơn Hàng</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<section>
+			<div class="container">
+				<div class="row">
+
+					<h2 class="my-5" 
+						style="font-weight: bold; font-size: 50px; text-align: center;">Quản Lý Đơn
+						Hàng</h2>
+					<table class="table table-bordered">
+						<thead class="table-success" >
+							<tr style="text-align: center; font-size: 25px; color: pink;">
+								<th><a style="text-decoration: none; color: pink;"
+									th:href="@{/admin/order?(page=${currentPage},sortField='id',sortDir=${reverseSortDir})}">Mã
+										Đặt Hàng</a></th>
+								<th><a style="text-decoration: none; color: pink;"
+									th:href="@{/admin/order?(page=${currentPage},sortField='date',sortDir=${reverseSortDir})}">Ngày
+										Đặt Hàng</a></th>
+								<th><a style="text-decoration: none; color: pink;"
+									th:href="@{/admin/order?(page=${currentPage},sortField='orderName',sortDir=${reverseSortDir})}">Tên
+										Khách Hàng</a></th>
+								<th><a style="text-decoration: none; color: pink;"
+									th:href="@{/admin/order?(page=${currentPage},sortField='amount',sortDir=${reverseSortDir})}">Số
+										Lượng</a></th>
+								<th><a style="text-decoration: none; color: pink;"
+									th:href="@{/admin/order?(page=${currentPage},sortField='totalPrice',sortDir=${reverseSortDir})}">Giá
+										Tiền</a></th>
+								<th><a style="text-decoration: none; color: pink;"
+									th:href="@{/admin/order?(page=${currentPage},sortField='status',sortDir=${reverseSortDir})}">Trạng Thái Đơn Hàng</a></th>		
+								
+									
+							</tr>
+						</thead>
+						
+						<tbody class="table-light"  
+							style="text-align: center; font-size: 25px; color: black;">
+							<tr th:each="order: ${orders}">
+								<td>
+									<a style="color: blue; font-weight: bold; text-decoration: none;" th:href="@{/admin/vieworder?(orderId=${order.id})}"
+									th:text="${order.id}">
+									</a>
+								</td> 
+									
+								<td th:text="${#dates.format(order.date, 'dd/MM/yyyy HH:mm')}"></td>
+								<td th:text="${order.customer.lastName+ ' ' +order.customer.firstName}"></td>
+								<td th:text="${ #numbers.formatInteger(order.totalQuantity,1,'POINT')} + ' món'"></td>
+								<td th:text="${ #numbers.formatInteger(order.amount,1,'POINT')} +' VND'"></td>
+								<td style="font-weight: bold;" th:text="${order.status}"></td>
+								
+							</tr> 
+							
+							<tr>
+								<td th:each="user: ${users}">
+								<span style="font-weight: bold; font-size: 40px;" th:text="${user.firstName}"></span></td>
+							</tr>
+						</tbody>
+					</table>
+					<nav aria-label="Page navigation example" class="nav-page" style="margin-left: 35%;">
+						<ul class="pagination">
+
+							<li th:if="${currentPage > 1}" class="page-item"><a
+								style="font-size: 25px; font-weight: bold; color: black;" class="page-link"
+								th:href="@{/admin/order?(page=${currentPage-1},sortField=${sortField},sortDir=${sortDir})}">Quay
+									Lại</a></li>
+							<li th:if="${currentPage <= 1}" class="page-item disabled">
+								<a style="font-size: 25px; font-weight: bold; color: black;" class="page-link"
+								href="#">Quay Lại</a>
+							</li>
+
+							<li th:each="i: ${#numbers.sequence(1, totalPages)}"
+								class="page-item"><a
+								style="font-size: 25px; font-weight: bold; color: black;" class="page-link"
+								th:text=${i}
+								th:href="@{/admin/order?(page=${i},sortField=${sortField},sortDir=${sortDir})}">1</a>
+							</li>
+
+							<li th:if="${currentPage < totalPages}" class="page-item"><a
+								style="font-size: 25px; font-weight: bold; color: black;" class="page-link"
+								th:href="@{/admin/order?(page=${currentPage+1},sortField=${sortField},sortDir=${sortDir})}">Tiếp
+									Tục</a>
+							</li>
+
+						</ul>
+					</nav>
+
+
+				</div>
+			</div>
+		</section>
+	</div>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{manage}">
+<head>
+<title>Quản Lý Khách Hàng</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<h2 class="my-5" style="text-align: center; font-weight: bold; font-size: 40px;">Quản Lý Khách Hàng</h2>
+					<table class="table  table-bordered">
+						<thead class="table-success">
+							<tr style="text-align: center;">
+								<th>
+									<a style="text-decoration: none; color: pink;" th:href="@{/admin/customers?(page=${currentPage},sortField='id',sortDir=${reverseSortDir})}">Mã Khách Hàng</a>
+								</th>
+								<th>
+									<a style="text-decoration: none; color: pink;" th:href="@{/admin/customers?(page=${currentPage},sortField='firstName',sortDir=${reverseSortDir})}">Họ</a>
+								</th>
+								<th>
+									<a style="text-decoration: none; color: pink;" th:href="@{/admin/customers?(page=${currentPage},sortField='lastName',sortDir=${reverseSortDir})}">Tên</a>
+								</th>
+								<th>
+									<a style="text-decoration: none; color: pink;" th:href="@{/admin/customers?(page=${currentPage},sortField='street',sortDir=${reverseSortDir})}">Địa Chỉ</a>
+								</th>
+								<th>
+									<a style="text-decoration: none; color: pink;" th:href="@{/admin/customers?(page=${currentPage},sortField='district',sortDir=${reverseSortDir})}">Quận</a>
+								</th>
+								<th>
+									<a style="text-decoration: none; color: pink;" th:href="@{/admin/customers?(page=${currentPage},sortField='city',sortDir=${reverseSortDir})}">Thành Phố</a>
+								</th>
+								<th>
+									<a style="text-decoration: none; color: pink;" th:href="@{/admin/customers?(page=${currentPage},sortField='email',sortDir=${reverseSortDir})}">Email</a>
+								</th>
+								<th>
+									<a style="text-decoration: none; color: pink;"th:href="@{/admin/customers?(page=${currentPage},sortField='phoneNumber',sortDir=${reverseSortDir})}">Số Điện Thoại</a>
+								</th>								
+								<th style="text-decoration: none; color: pink;" sec:authorize="hasAnyRole('ADMIN','MANAGER')">Chỉnh Sửa</th>
+							</tr>
+						</thead>
+						
+						<tbody class="table-light">
+							<tr style="text-align: center;" th:each="customer : ${customers}">
+								<td th:text="${customer.id}"></td>
+								<td th:text="${customer.lastName}"></td>
+								<td th:text="${customer.firstName}"></td>
+								<td th:text="${customer.street}"></td>
+								<td th:text="${customer.district}"></td>
+								<td th:text="${customer.city}"></td>
+								<td th:text="${customer.email}"></td>
+								<td th:text="${customer.phoneNumber}"></td>								
+								<td sec:authorize="hasAnyRole('ADMIN','MANAGER')">
+								<a  style="color: white; background-color: green;" class="btn" th:href="@{/admin/editcustomer?(customerId=${customer.id})}" role="button">
+								<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+  <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+  <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+</svg>
+								Edit</a>
+								<a style="color: white; background-color: green;" class="btn" th:href="@{/admin/deletecustomer?(customerId=${customer.id})}" role="button">
+								<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
+  <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
+</svg>
+								Delete</a>
+								</td>								
+							</tr>
+						</tbody>
+					</table>
+					<nav aria-label="Page navigation example">
+					  <ul class="pagination" style="margin-left: 520px;">
+					  
+					    <li th:if="${currentPage > 1}" class="page-item">
+					    	<a style="font-size: 25px; font-weight: bold; color: black;" class="page-link" th:href="@{/admin/customers?(page=${currentPage-1},sortField=${sortField},sortDir=${sortDir})}">Quay Lại</a>
+					    </li>
+					    <li th:if="${currentPage <= 1}" class="page-item disabled">
+					    	<a style="font-size: 25px; font-weight: bold; color: black;" class="page-link" href="#">Quay Lại</a>
+					    </li>					    
+					   					    
+					    <li th:each="i: ${#numbers.sequence(1, totalPages)}" class="page-item">
+					    	<a style="font-size: 25px; font-weight: bold; color: black;" class="page-link" th:text=${i} th:href="@{/admin/customers?(page=${i},sortField=${sortField},sortDir=${sortDir})}">1</a>
+					    </li>
+					    
+					    <li th:if="${currentPage < totalPages}" class="page-item">
+					    	<a style="font-size: 25px; font-weight: bold; color: black;" class="page-link" th:href="@{/admin/customers?(page=${currentPage+1},sortField=${sortField},sortDir=${sortDir})}">Tiếp Tục</a>
+					    </li>
+					    <li th:if="${currentPage >=  totalPages}" class="page-item disabled">
+					    	<a style="font-size: 25px; font-weight: bold; color: black;" class="page-link" href="#">Tiếp Tục</a>
+					    </li>
+					  </ul>
+					</nav>
+				
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

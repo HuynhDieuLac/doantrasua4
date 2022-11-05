@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout}">
+<head>
+<title>Ăn Vặt SuBon</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<div class="container pdtop">
+			<div class="row">
+				<div class="col-lg-9">
+					<div class="card mt-4" th:each = "food : ${foods}">
+						<img th:attr="src=@{/upload/{path}(path=${food.thumbnailImageName})}">
+						<div class="card-body">
+							<h3 class="card-title" th:text="${food.foodName}"></h3>
+							<h4>
+								<span th:text="${food.price}"></span>
+							</h4>
+
+							<p class="card-text" th:text="${food.description}"></p>
+							<a th:href="@{/shop/buyFood?(id=${food.id })}"
+								class="btn btn-primary">Thêm vào giỏ hàng <i
+								class="fas fa-shopping-cart"></i></a> <span class="text-
+warning">★
+
+								★ ★ ★ ☆</span> 4.0
+						</div>
+					</div>
+					<!-- /.card -->
+
+				</div>
+				<!-- /.col-lg-9 -->
+			</div>
+		</div>
+	</div>
+</body>
+</html>

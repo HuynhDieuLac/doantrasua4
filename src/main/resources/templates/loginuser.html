@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout}">
+<head>
+<title>Đăng Nhập</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<section>
+    	<div class="container">
+    		<div class="row">
+    			<div class="col-xs-12">
+    			<div class="section-1">
+    				<nav class="navbar bg-light">
+    				
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">
+    	Trang Chủ
+		<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+</svg>
+		Đăng Nhập
+    </a>
+  </div>
+
+    			</div>
+    		</div>
+    	</div>
+    	</div>
+    </section>
+    
+    <div class="container">
+    	<h1 class="title-head">
+    		<a href="#" style="text-decoration: none; color: #363636">Đăng Nhập Tài Khoản</a>
+    	</h1>
+    	
+    	<div class="row">
+    		<div class="col-lg-12">
+    			<div class="margin-bottom-30">
+    				<span>Nếu đã có tài khoản vui lòng đăng nhập tại đây.</span>
+    				<form accept-charset="utf-8" action="/register" id="customer_login" method="post">
+    					<input name="FormType" type="hidden" value="customer_login">
+    					<input name="utf8" type="hidden" value="true">
+    					
+    					<fieldset class="form-group">
+    				<label>Số Điện Thoại </label>
+    				<input type="tel" class="form-control form-control-lg" value name="telphone" id="telphone" placeholder="Số Điện Thoại" required>
+    					</fieldset>
+    					
+    					<fieldset class="form-group">
+    				<label>Mật Khẩu: </label>
+    				<input type="password" class="form-control form-control-lg" value name="password" id="password" placeholder="Mật Khẩu" required>
+    					</fieldset>
+    					
+    					<div class="col-xs-12 text-xs-left margin-bottom-30" style="margin-top: 6px; padding: 0;">
+    						<button type="submit" value="Đăng Nhập" class="btn btn-primary">Đăng Nhập</button>
+    						<a href="/register" class="btn-link-style btn-register" style="margin-left: 20px; text-decoration: none; color: #363636; font-weight: bold;">Đăng Ký</a>
+    					</div> 		
+    				</form>
+    			</div>
+    		</div>
+    		
+    		<div class="col-lg-12">
+    			<div id="recover-password" class="form-signup">
+    				<span>Nếu bạn quên mật khẩu thì vui lòng nhập Số Điện Thoại để lấy lại mật khẩu.</span>
+    				
+    				<form accept-charset="utf-8" action="/recover" id="recover_customer_password" method="post">
+    					<input name="FormType" type="hidden" value="recover_customer_password">
+    					<input name="utf8" type="hidden" value="true">
+    					
+    					<fieldset class="form-group">
+    						<label>Số Điện Thoại: </label>
+    						<input type="tel" class="form-control form-control-lg" value name="tel" id="tel" placeholder="Số Điện Thoại" required>
+    					</fieldset>
+    					
+    					<div class="col-xs-12 text-xs-left margin-bottom-30" style="margin-top: 6px; padding: 0;">
+    						<button type="submit" value="Lấy lại mật khẩu" class="btn btn-primary">Lấy lại mật khẩu</button>    					
+    					</div>
+    				</form>
+    			</div>
+    		</div>
+    	</div>
+    	
+    </div>
+	</div>
+</body>
+</html>

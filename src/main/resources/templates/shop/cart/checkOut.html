@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<link rel="shortcut icon" type="image/jpg" href="/images/logo-title.jpg" />
+
+<title>Thanh Toán</title>
+<meta charset="UTF-8">
+
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-
+fit=no">
+
+<title layout:title-pattern="$CONTENT_TITLE - $LAYOUT_TITLE">anvatsubon</title>
+<!-- Bootstrap CSS -->
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+	crossorigin="anonymous">
+<link href="path/to/effects.min.css" rel="stylesheet">
+<link rel="stylesheet" href="/css/checkout.css" type="text/css">
+<link rel="stylesheet"
+	href="path/to/font-awesome/css/font-awesome.min.css">
+</head>
+<body>
+	<div layout:fragment="content">
+		<div data-tg-refresh="checkout" id="checkout" class="content">
+			<form th:action="@{/shop/shoppingCartCustomer}"
+				th:object="${customerInfo}" method="POST">
+				<div class="wrap">
+
+					<main class="main">
+						<header class="main__header" style="width: 591px; height: 115px;">
+							<div class="logo logo-center"
+								style="width: 590.83px; height: 93.59px;">
+								<a href="#"><img class="logo__image logo__image--medium"
+									src="/images/logo-title.jpg"
+									style="width: 370px; height: 250px;"></a>
+							</div>
+						</header>
+
+						<div class="main__content">
+							<article class="animate-floting-labels row">
+								<div class="col col--tow">
+									<section class="section">
+										<div class="section__header">
+											<div class="layout-flex">
+												<h2
+													class="section__title layout-flex__item layout-flex__item--stretch">
+													<i class="section__title--icon hide-on-desktop">Thông
+														Tin Mua Hàng</i>
+												</h2>
+												<a href="/login"
+													style="color: #2a9dccc; text-decoration: none;"> <i>
+														<svg xmlns="http://www.w3.org/2000/svg" width="16"
+															height="16" fill="currentColor"
+															class="bi bi-person-circle" viewBox="0 0 16 16">
+  <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+  <path fill-rule="evenodd"
+																d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+</svg>
+												</i> <span>Đăng Nhập</span>
+												</a>
+											</div>
+										</div>
+
+										<div class="section__content">
+											<div class="fieldset">
+												<div class="field">
+													<div class="field__input-wrapper">
+														<input type="email" class="form-control"
+															th:field="*{email}" id="customer.emailAddress"
+															name="customer.emailAddress"
+															placeholder="Email(Tùy Chọn)"> <span
+															id="error-customer.emailAddress" class="error"> </span>
+
+
+													</div>
+												</div>
+
+												<div class="field">
+													<div class="field__input-wrapper">
+														<input type="text" class="form-control"
+															th:field="*{lastName}" id="customer.lastName"
+															name="customer.billing.lastName" placeholder="Họ">
+
+														<span id="error-customer.billing.lastName" class="error">
+														</span>
+
+													</div>
+												</div>
+
+												<div class="field">
+													<div class="field__input-wrapper">
+														<input class="form-control" th:field="*{firstName}"
+															id="customer.firstName" name="customer.billing.firstName"
+															placeholder="Tên"> <span
+															id="error-customer.billing.firstName" class="error">
+														</span>
+													</div>
+												</div>
+
+
+												<div class="field">
+													<div
+														class="flied__input-wrapper field__input-wrapper-connected">
+														<input type="tel" class="form-control"
+															th:field="*{numberPhone}" id="customer.billing.phonee"
+															name="customer.billing.phone" placeholder="Số Điện Thoại">
+														<span id="error-customer.billing.phone" class="error">
+														</span>
+													</div>
+												</div>
+
+												<div class="field">
+													<div
+														class="flied__input-wrapper field__input-wrapper-connected">
+														<input class="form-control" th:field="*{street}"
+															id="customer.billing.address"
+															name="customer.billing.address" placeholder="Địa Chỉ" />
+														<span id="error-customer.billing.address" class="error"></span>
+													</div>
+												</div>
+
+												<div class="field">
+													<div
+														class="flied__input-wrapper field__input-wrapper-connected">
+														<input class="form-control" th:field="*{district}"
+															id="customer.billing.address"
+															name="customer.billing.address" placeholder="Quận, huyện" />
+														<span id="error-customer.billing.address" class="error"></span>
+													</div>
+												</div>
+
+												<div class="field">
+													<div
+														class="flied__input-wrapper field__input-wrapper-connected">
+														<input class="form-control" th:field="*{city}"
+															id="customer.billing.city" placeholder="Thành phố " /> <span
+															id="error-customer.billing.city" class="error"></span>
+													</div>
+												</div>
+
+												<div class="field">
+													<div class="form-check">
+														<input class="form-check-input" type="checkbox" value=""
+															id="flexCheckChecked" checked> <label
+															class="form-check-label" for="flexCheckChecked">
+															Giao hàng đến địa chỉ khác </label>
+													</div>
+												</div>
+
+
+											</div>
+										</div>
+									</section>
+
+									<section class="section visually-hidden" id="shipping-address">
+
+									</section>
+
+									<div class="fieldset">
+
+										<div class="field">
+											<div class="field__input-wrapper">
+												<textarea class="form-control"
+													id="exampleFormControlTextarea1" rows="3"
+													placeholder="Ghi Chú"></textarea>
+											</div>
+										</div>
+
+									</div>
+								</div>
+
+								<div class="col col--tow">
+									<section class="section">
+										<div class="section__header">
+											<div class="layout-flex">
+												<h2
+													class="section__title layout-flex__item layout-flex__item--stretch">
+													Vận Chuyển</h2>
+											</div>
+										</div>
+
+										<div class="section__content">
+											<div class="alert alert--info">Vui lòng nhập thông tin
+												giao hàng</div>
+										</div>
+									</section>
+
+									<section class="section">
+										<div class="section__header">
+											<div class="layout-flex">
+												<h2
+													class="section__title layout-flex__item layout-flex__item--stretch">
+													Thanh Toán</h2>
+											</div>
+										</div>
+
+										<div class="section__content">
+											<div class="content-box">
+												<div class="content-box__row">
+													<div class="radio-wrapper">
+														<div class="radio__input">
+															<input class="form-check-input" id="paymentMethod-510551"
+																type="radio" name="paymentMethod"
+																data-bind="paymentMethod" value="510551">
+														</div>
+
+														<label class="radio__label"> <span
+															class="radio__label__primary"> Chuyển khoản qua
+																ngân hàng </span> <span class="radio__label__accessory">
+																<span class="radio__label__icon"> <i
+																	class="payment-icon payment-icon--3"> <svg
+																			xmlns="http://www.w3.org/2000/svg" width="16"
+																			height="16" fill="currentColor"
+																			class="bi bi-credit-card-2-front-fill"
+																			viewBox="0 0 16 16">
+  <path
+																				d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2.5 1a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h2a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-2zm0 3a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zm0 2a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1zm3 0a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1zm3 0a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1zm3 0a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1z" />
+</svg>
+																</i>
+															</span>
+														</span>
+														</label>
+													</div>
+
+													<div class="content-box__row__desc hide"
+														data-bind-show="paymentMethod == 510551">
+														<p>1. Shop sẽ liên hệ</p>
+													</div>
+
+												</div>
+
+												<div class="content-box__row">
+													<div class="radio-wrapper">
+														<div class="radio__input">
+															<input class="form-check-input" id="paymentMethod-510551"
+																type="radio" name="paymentMethod"
+																data-bind="paymentMethod" value="510551">
+														</div>
+
+														<label class="radio__label"> <span
+															class="radio__label__primary"> Thanh toán khi nhận
+																giao hàng (Cod - Nội Thành) </span> <span
+															class="radio__label__accessory"> <span
+																class="radio__label__icon"> <i
+																	class="payment-icon payment-icon--3"> <svg
+																			xmlns="http://www.w3.org/2000/svg" width="16"
+																			height="16" fill="currentColor"
+																			class="bi bi-credit-card-2-front-fill"
+																			viewBox="0 0 16 16">
+  <path
+																				d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2.5 1a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h2a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-2zm0 3a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zm0 2a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1zm3 0a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1zm3 0a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1zm3 0a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1z" />
+</svg>
+																</i>
+															</span>
+														</span>
+														</label>
+													</div>
+												</div>
+											</div>
+										</div>
+									</section>
+								</div>
+							</article>
+						</div>
+
+						<div class="main__footer unprintable">
+							<ul class="main__policy" style="list-style: none;">
+								<li><a class="a-text">Chính Sách Hoàn Trả</a></li>
+
+								<li></li>
+
+								<li><a class="a-text">Điều Khoản Sử Dụng</a></li>
+							</ul>
+						</div>
+
+					</main>
+
+					<aside class="sidebar">
+						<div class="sidebar__header">
+							<h2 class="sidebar__title">Đơn hàng (1 sản phẩm)</h2>
+						</div>
+
+						<div class="sidebar__content">
+							<div id="order-summary"
+								class="order-summary order-summary--is--collapsed">
+								<div class="order-summary__sections">
+									<div
+										class="order-summary__section order-summary__section--discount-code"
+										id="discountCode">
+										<div class="edit_checkout animate-floating-labels">
+											<div class="fieldset">
+												<div class="field">
+													<div class="field__input-btn-wrapper">
+														<div class="field__input-wrapper">
+															<input type="text" id="reductionCode"
+																class="form-control" placeholder="Nhập mã khuyến mãi">
+														</div>
+														<button type="button"
+															class="btn btn-success field__input-btn">Áp Dụng</button>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div
+									class="order-summary__section order-summary__section--total-lines order-summary--collapse-element"
+									id="orderSummary">
+									<table class="total-line-table">
+										<caption class="visually-hidden">Tổng giá trị</caption>
+										<thead>
+											<tr>
+												<td><span class="visually-hidden">Mô Tả</span></td>
+
+												<td><span class="visually-hidden">Giá Tiền</span></td>
+											</tr>
+										</thead>
+
+										<tbody class="total-line-table__tbody"
+											th:action="@{/shop/shoppingCartCustomer}"
+											th:object="${cartInfo}">
+											<tr class="total-line total-line--suptotal">
+												<th class="total-line__name">Tạm Tính</th>
+												<td class="total-line__name"></td>
+											</tr>
+
+											<tr class="total-line total-line--shipping-fee">
+												<th class="total-line__name">Phí Vận Chuyển</th>
+												<td class="total-line__price">-</td>
+											</tr>
+										</tbody>
+
+										<tfoot class="total-line-table__tfoot">
+											<tr class="total-line payment-due">
+												<th class="total-line__name"><span
+													class="payment-due__label-total">Tổng cộng</span></th>
+
+												<td><span class="payment-due__price" style="color: red"></span>
+												</td>
+											</tr>
+										</tfoot>
+									</table>
+								</div>
+
+								<div class="pdtop">
+
+									<div th:if="${errorMessage != null}"
+										class="alert
+alert-danger" th:text="${errorMessage}"
+										role="alert"></div>
+								</div>
+
+								<div
+									class="order-summary__nav field__input-btn-wrapper hide-on-mobile layout-flex--row-reverse">
+									<a th:href="@{/shop/shoppingCart}" class="previous-link"
+										style="text-decoration: none;"> <i class="i-cartback-icon">
+											<svg xmlns="http://www.w3.org/2000/svg" width="16"
+												height="16" fill="currentColor" class="bi bi-arrow-left"
+												viewBox="0 0 16 16">
+  <path fill-rule="evenodd"
+													d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
+</svg>
+									</i> <span class="previous-link__content">Quay về giỏ hàng</span>
+
+									</a>
+									<button id="submitOrder" type="submit"
+										class="btn btn-success field__input-btn">Đặt Hàng</button>
+
+								</div>
+							</div>
+						</div>
+					</aside>
+
+				</div>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

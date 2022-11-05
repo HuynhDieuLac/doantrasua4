@@ -1,0 +1,14 @@
+.margin-top-md-3
+{
+	background-color: white;
+	font-weight: bold;
+	border-radius: 15px;
+	padding: 50px;
+	font-size: 20px;
+	color: green;
+	margin-top: 15px;
+	border: 1px solid black;
+	text-align: center;
+
+}
+

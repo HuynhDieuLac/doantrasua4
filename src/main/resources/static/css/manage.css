@@ -1,0 +1,69 @@
+body
+{
+	width: 100%;
+	height: 100%;
+}
+
+header container
+{
+	background-color: pink;
+}
+
+.content
+{
+	display: flex;
+	flex: 1 0 auto;
+	height: 1000px;
+	margin-top: 25px;
+}
+
+.content-div
+{
+	background-color: pink;
+}
+
+
+.btn-search
+{
+	background-color: pink;
+	margin-bottom: 22px;
+}
+
+.form-control
+{
+	font-size: 2rem;
+}
+
+.input-group
+{
+	margin-top: 25px;
+	padding-left: 1075px;
+}
+
+.col-md-9 .row
+{
+	margin-left: 12px;
+}
+
+.nav-link-a
+{
+	font-size: 40px;
+	margin-left: 15px;
+	text-decoration: none;
+	color: black;
+	font-weight: bold;
+	background-color: pink;
+	border-radius: 15px;
+	padding: 10px;
+}
+
+.dropdown
+{
+	margin-top: 50px;
+	margin-left: 195px;
+}
+
+.col-md-6
+{
+	margin-bottom: 15px;
+}

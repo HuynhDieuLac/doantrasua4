@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Shopping cart</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+          integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/shards.min.css">
+</head>
+<body>
+<div layout:fragment="content">
+	<script>
+		function findCartLine(productId,data){
+			for(let i=0;i < data.cartLines.length;i++){
+				if(data.cartLines[i].productInfo.productId == productId) {
+					return data.cartLines[i];
+				}
+			}
+			
+			return null;
+		}
+	
+		$(document).ready(function(){
+			$("#message").hide();
+			$('.quantity').focusin(function(){
+			      $(this).attr('oldvalue',$(this).val());
+			});
+			
+			$(".quantity").change(function(){
+				var oldValue = $(this).attr('oldvalue');
+				
+				var quantity= $(this).val();
+				var productIdInput = $(this).parent().parent().children().eq(2);
+				var productId = productIdInput.val();
+				
+				var url = "/api/cart/update-quantity?productId="+productId + 
+						"&quantity="+quantity;
+				var quantityInput = $(this);
+				var totalPriceElem = $(this).parent().parent().children().eq(6);
+				
+				$.get(url, function(data, status){
+					console.log(data);
+					var msg = data.message;
+					var cartLine = findCartLine(productId,data);
+					totalPriceElem.html(cartLine.amount);
+					$("#amountTotal").html(data.amountTotal);
+					if(msg != null && msg != "") {
+						//alert(msg);
+						$("#message").html(msg);
+						$("#message").show();
+						quantityInput.val(oldValue);
+					} else {
+						$("#message").hide();
+					}
+				});
+			});
+			
+		});
+		
+		
+		
+	</script>
+	<div class="entry-header-area pb-50 pdtop">
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div class="entry-header">
+						<h1 class="entry-title">Giỏ hàng của bạn</h1>
+						
+						<div id="message" class="alert alert-danger" role="alert">
+						  A simple danger alert—check it out!
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="cart-main-area pb-50">
+		<div class="container-fluid">
+			<!-- cart-main-area start -->
+			<div class="cart-main-area ptb-40">
+				<div class="container">
+					<div class="row">
+						<div class="col">
+							<div class="table-responsive">
+								<!-- 
+							Shopping cart has to be id=mainartTable
+							 -->
+								<div></div>
+								<table id="mainCartTable"
+									class="table table-hover table-condensed">
+
+
+
+									<thead>
+										<tr>
+											<th>Ảnh</th>
+											<th>Mã sản phẩm</th>
+											<th>Tên sản phẩm</th>
+											<th>Giá</th>
+											<th>Số lượng</th>
+											<th>Tổng</th>
+											<th>Xóa sản phẩm</th>
+										</tr>
+									</thead>
+									<tbody>
+											<form th:if="${cartForm != null && cartForm.cartLines != null && !cartForm.cartLines.empty}" method="POST" th:action="@{/shop/shoppingCart}" th:object="${cartForm}">
+
+												<div class="product-preview-container">
+													
+														<tr th:each="cartLineInfo,itemStat: *{cartLines}">
+															<td data-th="Image">
+																<div class="row-cart">
+																	<div class="col-sm-4 hidden-xs">
+																		<img  width="75" height=50 src="" th:attr="src=@{/upload/{path}(path=${cartLineInfo.foodInfo.foodImage})}" />
+																	</div>
+																</div>
+															</td>
+															
+															<td width="15%" th:text="${cartLineInfo.foodInfo.foodId}">
+															</td>
+															
+															<input
+																	type="hidden"
+																	th:field="*{cartLines[__${itemStat.index}__].foodInfo.foodId}"
+															/>
+															
+															<td class="col" th:text="${cartLineInfo.foodInfo.foodName}"></td>
+															
+															<td class="col">
+															<strong th:text="${cartLineInfo.foodInfo.foodPrice}"></strong>
+															</td>
+															
+															<td class="col">
+																<input class="quantity"
+																	th:attr="oldvalue=*{cartLines[__${itemStat.index}__].quantity}"
+																	th:field="*{cartLines[__${itemStat.index}__].quantity}"
+																	/>
+																	</td>
+															<td th:text="${cartLineInfo.amount}"></td>
+															
+															<td class="col"><a
+																th:href="@{/shop/shoppingCartRemoveProduct?(id=${cartLineInfo.foodInfo.foodId})}">
+																	<i class="fas fa-trash-alt"></i>
+															</a>
+															</td>
+														</tr>
+													
+												</div>
+												<input class="button-update-sc" type="submit"
+													value="Cập nhật số lượng" />
+											</form>
+									
+									</tbody>
+								</table>
+							</div>
+
+							<div class="row">
+								<div class="col-lg-8 col-md-8 col-sm-7 col-xs-12">
+									<div class="buttons-cart pdtop">
+										<a class="btn btn-primary"
+											th:href="@{/}">Tiếp tục mua
+											hàng</a>
+									</div>
+								</div>
+								<div class="col-lg-4 col-md-4 col-sm-5 col-xs-12">
+									<div class="cart_totals">
+										<h2>Tổng cộng</h2>
+										<div class="cart-totals-table">
+											<table class="table">
+												<tbody>
+													<tr class="cart-subtotal">
+														<th>Tổng cộng</th>
+														<td id="amountTotal" th:text="${cartForm.amountTotal}"></td>
+													</tr>
+
+												</tbody>
+											</table>
+										</div>
+									</div>
+									<div class="wc-proceed-to-checkout pdbottom">
+										<a th:href="@{/shop/shoppingCartCustomer}"
+											class="btn btn-primary">Tiếp tục</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+	<!-- ---------------------------------------------------------------------- -->
+</body>

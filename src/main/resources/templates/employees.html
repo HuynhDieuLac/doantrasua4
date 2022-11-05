@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>Loda</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<table>
+		<tr>
+			<th>ID</th>
+			<th>ODD/EVEN</th>
+			<th>EMP_ID</th>
+			<th>NAME</th>
+			<th>DOB</th>
+			<th>ACTION</th>
+			<th>ROLE</th>
+		</tr>
+		<tr th:each="employee,iterStat : ${employeeList}">
+			<td th:text="${iterStat.index}+1"></td>
+			<td th:text="${iterStat.odd}? 'ODD' : 'EVEN'"></td>
+			<td th:text="${employee.id}"></td>
+			<td th:text="${employee.name}"></td>
+			<td th:text="${#dates.format(employee.dateOfBirth,'dd/MM/yyyy')}"></td>
+			<td><a
+				th:href="@{http://localhost:8080/employee?action=EDIT&(empId=${employee.id})}">EDIT</a>
+			</td>
+			<td>
+				<div th:each="permission : ${employee.permissions}">
+					<div th:switch="${permission.role}">
+						<p th:case="'ADMIN'">Employee is an Administrator</p>
+						<p th:case="'MANAGER'">Employee is a Manager</p>
+					</div>
+				</div>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

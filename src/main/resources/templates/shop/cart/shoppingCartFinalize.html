@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<title>Thanh Toán</title>
+<meta charset="UTF-8">
+
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-
+fit=no">
+
+<title layout:title-pattern="$CONTENT_TITLE - $LAYOUT_TITLE">anvatsubon</title>
+<!-- Bootstrap CSS -->
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+	crossorigin="anonymous">
+<link href="path/to/effects.min.css" rel="stylesheet">
+<link rel="stylesheet" href="/css/checkout.css" type="text/css">
+<link rel="stylesheet"
+	href="path/to/font-awesome/css/font-awesome.min.css">
+
+</head>
+<body>
+	<div layout:fragment="content">
+		<div class="entry-header-area ptb-40 pdtop">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="entry-header">
+							<h1 class="entry-title">Hóa Đơn</h1>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="checkout-area pb-50 content">
+			<div class="container">
+				<h3>Đặt hàng thành công</h3>
+				Mã hóa đơn của bạn là: <span th:text="${lastOrderedCart.orderNum}"></span>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
